@@ -1,0 +1,21 @@
+Execute:
+  source ~/Develop/src/inflector.vim/plugin/inflector.vim
+
+Execute(Tests for Constantize):
+  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('some text to work')
+
+Execute(Tests for Privatize):
+  AssertEqual '_some_var', Privatize('some_var')
+  AssertEqual '_some_var', Privatize('_some_var')
+
+Execute(Tests for Capitalize):
+  AssertEqual 'Big', Capitalize('big')
+
+Execute(Tests for Titleize):
+  AssertEqual 'Some Text To Work', Titleize('some text to work')
+
+Execute(Tests for Underscore):
+  AssertEqual 'some_var_name', Underscore('some var name')
+
+Execute(Tests for Camelize):
+  AssertEqual 'SomeClassName', Camelize('some class name')
