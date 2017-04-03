@@ -1,6 +1,3 @@
-Execute:
-  source ~/Develop/src/inflector.vim/plugin/inflector.vim
-
 Execute(Tests for Sanitize):
   AssertEqual ['some', 'text', 'to', 'work'], Sanitize('some text to work')
   AssertEqual ['some', 'text', 'to', 'work'], Sanitize('Some Text To Work')
