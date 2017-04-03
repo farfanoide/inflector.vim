@@ -1,10 +1,10 @@
 function! Sanitize(str)
     if a:str =~ '\s'
-        let l:separator =  '\s'
-    elseif a:str =~ '_'
-        let l:separator =  '_'
+        let l:separator = '\s'
+    elseif a:str =~ '_\|-'
+        let l:separator = '_\|-'
     else
-        let l:separator =  '[A-Z]\?[a-z]*\zs'
+        let l:separator = '[A-Z]\?[a-z]*\zs'
     endif
     return map(split(a:str, l:separator), 'tolower(v:val)')
 endfunction
@@ -31,4 +31,8 @@ endfunction
 
 function! Underscore(str)
     return join(Sanitize(a:str), '_')
+endfunction
+
+function! Dasherize(str)
+    return join(Sanitize(a:str), '-')
 endfunction

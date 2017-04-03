@@ -10,6 +10,7 @@ Execute(Tests for Sanitize):
   AssertEqual ['some', 'text', 'to', 'work'], Sanitize('SOME_TEXT_TO_WORK')
   AssertEqual ['some', 'text', 'to', 'work'], Sanitize('some_text_to_work')
   AssertEqual ['some', 'text', 'to', 'work'], Sanitize('_some_text_to_work')
+  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('some-text-to-work')
 
 Execute(Tests for Constantize):
   AssertEqual 'SOME_TEXT_TO_WORK', Constantize('some text to work')
@@ -20,6 +21,7 @@ Execute(Tests for Constantize):
   AssertEqual 'SOME_TEXT_TO_WORK', Constantize('SOME_TEXT_TO_WORK')
   AssertEqual 'SOME_TEXT_TO_WORK', Constantize('some_text_to_work')
   AssertEqual 'SOME_TEXT_TO_WORK', Constantize('_some_text_to_work')
+  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('some-text-to-work')
 
 Execute(Tests for Privatize):
   AssertEqual '_some_var', Privatize('some_var')
@@ -38,6 +40,7 @@ Execute(Tests for Titleize):
   AssertEqual 'Some Text To Work', Titleize('SOME_TEXT_TO_WORK')
   AssertEqual 'Some Text To Work', Titleize('some_text_to_work')
   AssertEqual 'Some Text To Work', Titleize('_some_text_to_work')
+  AssertEqual 'Some Text To Work', Titleize('some-text-to-work')
 
 Execute(Tests for Underscore):
   AssertEqual 'some_text_to_work', Underscore('some text to work')
@@ -48,6 +51,7 @@ Execute(Tests for Underscore):
   AssertEqual 'some_text_to_work', Underscore('SOME_TEXT_TO_WORK')
   AssertEqual 'some_text_to_work', Underscore('some_text_to_work')
   AssertEqual 'some_text_to_work', Underscore('_some_text_to_work')
+  AssertEqual 'some_text_to_work', Underscore('some-text-to-work')
 
 Execute(Tests for Camelize):
   AssertEqual 'SomeClassName', Camelize('some class name')
@@ -58,3 +62,14 @@ Execute(Tests for Camelize):
   AssertEqual 'SomeTextToWork', Camelize('SOME_TEXT_TO_WORK')
   AssertEqual 'SomeTextToWork', Camelize('some_text_to_work')
   AssertEqual 'SomeTextToWork', Camelize('_some_text_to_work')
+  AssertEqual 'SomeTextToWork', Camelize('some-text-to-work')
+
+Execute(Tests for Dasherize):
+  AssertEqual 'some-text-to-work', Dasherize('some text to work')
+  AssertEqual 'some-text-to-work', Dasherize('some_text_to_work')
+  AssertEqual 'some-text-to-work', Dasherize('SomeTextToWork')
+  AssertEqual 'some-text-to-work', Dasherize('someTextToWork')
+  AssertEqual 'some-text-to-work', Dasherize('Some_Text_To_Work')
+  AssertEqual 'some-text-to-work', Dasherize('SOME_TEXT_TO_WORK')
+  AssertEqual 'some-text-to-work', Dasherize('some_text_to_work')
+  AssertEqual 'some-text-to-work', Dasherize('_some_text_to_work')
