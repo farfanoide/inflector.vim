@@ -1,6 +1,8 @@
 Inflector.vim
 =============
 
+[![Build Status](https://travis-ci.org/farfanoide/inflector.vim.svg?branch=master)](https://travis-ci.org/farfanoide/inflector.vim)
+
 This might at some point become a plugin, right now it's just a little project
 to learn vimscript.
 
@@ -17,10 +19,14 @@ TODO:
 -----
 
 - [x] Create functions for common inflections
-- [ ] Create text multiplexer (one way is done via `Sanitize`)
+- [x] Create text multiplexer (one way is done via `Sanitize`)
+- [ ] explain the idea of 'text multiplexer'
 - [ ] check how to run the functions with text objects/motions as input
-- [ ] check how to enable autoloading of the plugin
-- [ ] use autoloading to setup travis ci
+- [x] check how to enable autoloading of the plugin
+- [x] use autoloading to setup travis ci
+- [ ] add vim help
+- [ ] write installation instructions
+- [ ] write usage
 
 Tests
 -----
