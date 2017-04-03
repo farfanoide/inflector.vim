@@ -70,3 +70,13 @@ Execute(Tests for Dasherize):
   AssertEqual 'some-text-to-work', Dasherize('SOME_TEXT_TO_WORK')
   AssertEqual 'some-text-to-work', Dasherize('some_text_to_work')
   AssertEqual 'some-text-to-work', Dasherize('_some_text_to_work')
+
+Execute(Tests for Dotify):
+  AssertEqual 'some.text.to.work', Dotify('some text to work')
+  AssertEqual 'some.text.to.work', Dotify('some_text_to_work')
+  AssertEqual 'some.text.to.work', Dotify('SomeTextToWork')
+  AssertEqual 'some.text.to.work', Dotify('someTextToWork')
+  AssertEqual 'some.text.to.work', Dotify('Some_Text_To_Work')
+  AssertEqual 'some.text.to.work', Dotify('SOME_TEXT_TO_WORK')
+  AssertEqual 'some.text.to.work', Dotify('some_text_to_work')
+  AssertEqual 'some.text.to.work', Dotify('_some_text_to_work')

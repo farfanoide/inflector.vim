@@ -36,3 +36,7 @@ endfunction
 function! Dasherize(str)
     return join(Sanitize(a:str), '-')
 endfunction
+
+function! Dotify(str)
+    return join(Sanitize(a:str), '.')
+endfunction
