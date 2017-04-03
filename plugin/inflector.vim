@@ -1,17 +1,28 @@
+function! Sanitize(str)
+    if a:str =~ '\s'
+        let l:separator =  '\s'
+    elseif a:str =~ '_'
+        let l:separator =  '_'
+    else
+        let l:separator =  '[A-Z]\?[a-z]*\zs'
+    endif
+    return map(split(a:str, l:separator), 'tolower(v:val)')
+endfunction
+
 function! Constantize(str)
-    return toupper(substitute(a:str, '\s', '_', 'g'))
+    return join(map(Sanitize(a:str), 'toupper(v:val)'), '_')
 endfunction
 
 function! Camelize(str)
-    return join(map(split(a:str, '\s'), 'Capitalize(v:val)'), '')
+    return join(map(Sanitize(a:str), 'Capitalize(v:val)'), '')
 endfunction
 
 function! Capitalize(word)
-    return substitute(a:word, '\w', '\=toupper(submatch(0))', '')
+    return substitute(tolower(a:word), '\w', '\=toupper(submatch(0))', '')
 endfunction
 
 function! Titleize(str)
-    return join(map(split(a:str, '\s'), 'Capitalize(v:val)'), ' ')
+    return join(map(Sanitize(a:str), 'Capitalize(v:val)'))
 endfunction
 
 function! Privatize(str)
@@ -19,5 +30,5 @@ function! Privatize(str)
 endfunction
 
 function! Underscore(str)
-    return join(split(a:str, ' '), '_')
+    return join(Sanitize(a:str), '_')
 endfunction

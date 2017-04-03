@@ -1,8 +1,25 @@
 Execute:
   source ~/Develop/src/inflector.vim/plugin/inflector.vim
 
+Execute(Tests for Sanitize):
+  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('some text to work')
+  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('Some Text To Work')
+  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('SomeTextToWork')
+  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('someTextToWork')
+  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('Some_Text_To_Work')
+  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('SOME_TEXT_TO_WORK')
+  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('some_text_to_work')
+  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('_some_text_to_work')
+
 Execute(Tests for Constantize):
   AssertEqual 'SOME_TEXT_TO_WORK', Constantize('some text to work')
+  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('some_text_to_work')
+  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('SomeTextToWork')
+  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('someTextToWork')
+  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('Some_Text_To_Work')
+  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('SOME_TEXT_TO_WORK')
+  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('some_text_to_work')
+  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('_some_text_to_work')
 
 Execute(Tests for Privatize):
   AssertEqual '_some_var', Privatize('some_var')
@@ -10,12 +27,34 @@ Execute(Tests for Privatize):
 
 Execute(Tests for Capitalize):
   AssertEqual 'Big', Capitalize('big')
+  AssertEqual 'Big', Capitalize('BIG')
 
 Execute(Tests for Titleize):
   AssertEqual 'Some Text To Work', Titleize('some text to work')
+  AssertEqual 'Some Text To Work', Titleize('some_text_to_work')
+  AssertEqual 'Some Text To Work', Titleize('SomeTextToWork')
+  AssertEqual 'Some Text To Work', Titleize('someTextToWork')
+  AssertEqual 'Some Text To Work', Titleize('Some_Text_To_Work')
+  AssertEqual 'Some Text To Work', Titleize('SOME_TEXT_TO_WORK')
+  AssertEqual 'Some Text To Work', Titleize('some_text_to_work')
+  AssertEqual 'Some Text To Work', Titleize('_some_text_to_work')
 
 Execute(Tests for Underscore):
-  AssertEqual 'some_var_name', Underscore('some var name')
+  AssertEqual 'some_text_to_work', Underscore('some text to work')
+  AssertEqual 'some_text_to_work', Underscore('some_text_to_work')
+  AssertEqual 'some_text_to_work', Underscore('SomeTextToWork')
+  AssertEqual 'some_text_to_work', Underscore('someTextToWork')
+  AssertEqual 'some_text_to_work', Underscore('Some_Text_To_Work')
+  AssertEqual 'some_text_to_work', Underscore('SOME_TEXT_TO_WORK')
+  AssertEqual 'some_text_to_work', Underscore('some_text_to_work')
+  AssertEqual 'some_text_to_work', Underscore('_some_text_to_work')
 
 Execute(Tests for Camelize):
   AssertEqual 'SomeClassName', Camelize('some class name')
+  AssertEqual 'SomeTextToWork', Camelize('some_text_to_work')
+  AssertEqual 'SomeTextToWork', Camelize('SomeTextToWork')
+  AssertEqual 'SomeTextToWork', Camelize('someTextToWork')
+  AssertEqual 'SomeTextToWork', Camelize('Some_Text_To_Work')
+  AssertEqual 'SomeTextToWork', Camelize('SOME_TEXT_TO_WORK')
+  AssertEqual 'SomeTextToWork', Camelize('some_text_to_work')
+  AssertEqual 'SomeTextToWork', Camelize('_some_text_to_work')
