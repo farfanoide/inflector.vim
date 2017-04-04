@@ -1,13 +1,14 @@
 " if exists('g:loaded_inflector')
 "   finish
 " endif
+"
 " let g:loaded_inflector = 1
 
 function! Sanitize(str)
     if a:str =~ '\s'
         let l:separator = '\s'
-    elseif a:str =~ '_\|-'
-        let l:separator = '_\|-'
+    elseif a:str =~ '_\|-\|\.'
+        let l:separator = '_\|-\|\.'
     else
         let l:separator = '[A-Z]\?[a-z]*\zs'
     endif
@@ -58,6 +59,7 @@ function! Inflect(type, ...)
     let reg_save = @@
 
     " get inflection type
+    echom 'Select Inflection (.,_,-,c,C,d,p,t):'
     let l:inflection = nr2char(getchar())
     let l:inflections = {
                 \ '.': function('Dotify'),
@@ -88,4 +90,6 @@ function! Inflect(type, ...)
     normal! `[v`]p
     let &selection = sel_save
     let @@ = reg_save
+    " clear command line
+    echom ''
 endfunction
