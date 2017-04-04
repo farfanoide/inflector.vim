@@ -1,14 +1,11 @@
 " if exists('g:loaded_inflector')
 "   finish
 " endif
-"
 " let g:loaded_inflector = 1
 
 function! Sanitize(str)
-    if a:str =~ '\s'
-        let l:separator = '\s'
-    elseif a:str =~ '_\|-\|\.'
-        let l:separator = '_\|-\|\.'
+    if a:str =~ '\s\|_\|-\|\.'
+        let l:separator = '\s\|_\|-\|\.'
     else
         let l:separator = '[A-Z]\?[a-z]*\zs'
     endif
@@ -51,8 +48,9 @@ endfunction
 " TODO: add aliases? ie: dot == . == d == dotify
 " TODO: write examples of mappings
 " TODO: add support to auto add mappings
+" TODO: scope functions with s:, export only Inflect
 
-function! Inflect(type, ...)
+function! s:Inflect(type, ...)
     " Save stuff
     let sel_save = &selection
     let &selection = "inclusive"
@@ -93,3 +91,7 @@ function! Inflect(type, ...)
     " clear command line
     echom ''
 endfunction
+
+" export plugin mappings
+nnoremap <silent> <Plug>(Inflect) :set opfunc=<SID>Inflect<Enter>g@
+vnoremap <silent> <Plug>(Inflect) :<C-U>call <SID>Inflect(visualmode(), 1)<Enter>

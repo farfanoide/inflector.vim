@@ -21,8 +21,8 @@ Usage:
 Add some mappings to your vimrc:
 
 ```vim
-nmap <silent> gI :set opfunc=Inflect<CR>g@
-vmap <silent> gI :<C-U>call Inflect(visualmode(), 1)<CR>
+nmap gI <Plug>(Inflect)
+vmap gI <Plug>(Inflect)
 ```
 
 Done, now you can `gI` some text (stands for `go Inflect`).
@@ -94,11 +94,15 @@ TODO:
 
 - [x] Create functions for common inflections
 - [x] Create text multiplexer (one way is done via `Sanitize`)
-- [ ] rename camelize to Pascalize and add camelize
 - [x] check how to run the functions with text objects/motions as input (:h map-operator)
-- [ ] explain the idea of 'text multiplexer'
+- [x] export plugin mappings
+- [ ] add support to auto generate mappings, ie: let g:inflector_mapping = 'gI'
+- [ ] add tests for mappings
+- [ ] scope functions to script while keeping tests running
+- [ ] rename camelize to Pascalize and add camelize
 - [x] check how to enable autoloading of the plugin
 - [x] use autoloading to setup travis ci
+- [ ] explain the idea of 'text multiplexer'
 - [ ] add vim help
 - [ ] write installation instructions
 - [ ] write usage
