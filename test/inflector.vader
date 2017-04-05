@@ -91,6 +91,16 @@ Execute(Tests for Camelize):
   AssertEqual 'someTextToWork', Camelize('some_text_to_work')
   AssertEqual 'someTextToWork', Camelize('_some_text_to_work')
 
+Execute(Tests for Normalize):
+  AssertEqual 'some text to work', Normalize('some text to work')
+  AssertEqual 'some text to work', Normalize('some_text_to_work')
+  AssertEqual 'some text to work', Normalize('SomeTextToWork')
+  AssertEqual 'some text to work', Normalize('someTextToWork')
+  AssertEqual 'some text to work', Normalize('Some_Text_To_Work')
+  AssertEqual 'some text to work', Normalize('SOME_TEXT_TO_WORK')
+  AssertEqual 'some text to work', Normalize('some_text_to_work')
+  AssertEqual 'some text to work', Normalize('_some_text_to_work')
+
 Execute(Setup mappings):
     nmap gI <Plug>(Inflect)
     vmap gI <Plug>(Inflect)

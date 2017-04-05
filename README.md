@@ -127,6 +127,14 @@ Privatize (invoked with `p`):
 _some_var
 ```
 
+Normalize (invoked with `n`):
+
+```vim
+{cursor}SOME_TEXT_TO_WORK
+" gI$n results in:
+some text to work
+```
+
 TODO:
 -----
 

@@ -4,11 +4,6 @@ endif
 
 let g:loaded_inflector = 1
 
-if exists('g:inflector_mapping')
-    execute 'nmap ' . g:inflector_mapping .  ' <Plug>(Inflect)'
-    execute 'vmap ' . g:inflector_mapping .  ' <Plug>(Inflect)'
-endif
-
 function! Sanitize(str)
     if a:str =~ '\s\|[._\-]'
         let l:separator = '\s\|[._\-]'
@@ -16,6 +11,10 @@ function! Sanitize(str)
         let l:separator = '[A-Z]\?[a-z]*\zs'
     endif
     return map(split(a:str, l:separator), 'tolower(v:val)')
+endfunction
+
+function! Normalize(str)
+    return join(Sanitize(a:str))
 endfunction
 
 function! Constantize(str)
@@ -55,17 +54,17 @@ function! Dotify(str)
 endfunction
 
 function! s:Inflect(type, ...)
-    " Save stuff
-    let sel_save = &selection
-    let &selection = "inclusive"
-    let reg_save = @@
+    " save state
+    let l:saved_selection = &selection
+    let l:saved_register = @@
+    let l:saved_cursor = getpos('.')
 
     " get inflection type
-    echom 'Select Inflection (.,_,-,c,C,d,p,t):'
+    echom 'Select Inflection (.,_,-,c,C,n,p,t):'
     let l:inflection = nr2char(getchar())
 
     " return early on invalid inflection
-    if  l:inflection !~# '[._\-cCdpt]'
+    if  l:inflection !~# '[._\-cCnpt]'
         echom 'Invalid option' | return
     endif
 
@@ -75,7 +74,7 @@ function! s:Inflect(type, ...)
                 \ '_': function('Underscore'),
                 \ 'C': function('Constantize'),
                 \ 'c': function('Camelize'),
-                \ 'd': function('Dotify'),
+                \ 'n': function('Normalize'),
                 \ 'p': function('Privatize'),
                 \ 'P': function('Pascalize'),
                 \ 't': function('Titleize'),
@@ -97,8 +96,12 @@ function! s:Inflect(type, ...)
 
     " replace old text with result
     normal! `[v`]p
-    let &selection = sel_save
-    let @@ = reg_save
+    normal! `[
+
+    " restore previous state
+    let @@ = l:saved_register
+    call setpos('.', l:saved_cursor)
+
     " clear command line
     echom ''
 endfunction
@@ -106,3 +109,9 @@ endfunction
 " export plugin mappings
 nnoremap <silent> <Plug>(Inflect) :set opfunc=<SID>Inflect<Enter>g@
 vnoremap <silent> <Plug>(Inflect) :<C-U>call <SID>Inflect(visualmode(), 1)<Enter>
+
+" Create user mappings
+if exists('g:inflector_mapping')
+    execute 'nmap ' . g:inflector_mapping .  ' <Plug>(Inflect)'
+    execute 'vmap ' . g:inflector_mapping .  ' <Plug>(Inflect)'
+endif
