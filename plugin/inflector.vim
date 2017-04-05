@@ -4,8 +4,8 @@
 " let g:loaded_inflector = 1
 
 function! Sanitize(str)
-    if a:str =~ '\s\|_\|-\|\.'
-        let l:separator = '\s\|_\|-\|\.'
+    if a:str =~ '\s\|[._\-]'
+        let l:separator = '\s\|[._\-]'
     else
         let l:separator = '[A-Z]\?[a-z]*\zs'
     endif
@@ -44,12 +44,6 @@ function! Dotify(str)
     return join(Sanitize(a:str), '.')
 endfunction
 
-" TODO: check l:inflection is inside l:inflection.keys
-" TODO: add aliases? ie: dot == . == d == dotify
-" TODO: write examples of mappings
-" TODO: add support to auto add mappings
-" TODO: scope functions with s:, export only Inflect
-
 function! s:Inflect(type, ...)
     " Save stuff
     let sel_save = &selection
@@ -59,6 +53,12 @@ function! s:Inflect(type, ...)
     " get inflection type
     echom 'Select Inflection (.,_,-,c,C,d,p,t):'
     let l:inflection = nr2char(getchar())
+
+    " return early on invalid inflection
+    if  l:inflection !~# '[._\-cCdpt]'
+        echom 'Invalid option' | return
+    endif
+
     let l:inflections = {
                 \ '.': function('Dotify'),
                 \ '-': function('Dasherize'),
