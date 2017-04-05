@@ -33,7 +33,7 @@ ask you for the type of conversion you want to apply.
 Available inflections:
 ----------------------
 
-- Dotify (invoked with .):
+- Dotify (invoked with `.`):
 
     ```vim
     {cursor}some text to work
@@ -41,7 +41,7 @@ Available inflections:
     some.text.to.work
     ```
 
-- Dasherize (invoked with -):
+- Dasherize (invoked with `-`):
 
     ```vim
     {cursor}some text to work
@@ -49,7 +49,7 @@ Available inflections:
     some-text-to-work
     ```
 
-- Constantize (invoked with C):
+- Constantize (invoked with `C`):
 
     ```vim
     {cursor}some text to work
@@ -57,7 +57,14 @@ Available inflections:
     SOME_TEXT_TO_WORK
     ```
 
-- Camelize (invoked with t):
+- Camelize (invoked with `c`):
+
+    ```vim
+    {cursor}some text to work
+    " gI$c results in:
+    someTextToWork
+    ```
+- Pascalize (invoked with `P`):
 
     ```vim
     {cursor}some text to work
@@ -65,7 +72,7 @@ Available inflections:
     SomeTextToWork
     ```
 
-- Titleize (invoked with t):
+- Titleize (invoked with `t`):
 
     ```vim
     {cursor}some text to work
@@ -81,7 +88,7 @@ Available inflections:
     some_text_to_work
     ```
 
-- Privatize (invoked with p):
+- Privatize (invoked with `p`):
 
     ```vim
     {cursor}some_var
@@ -98,7 +105,7 @@ TODO:
 - [x] export plugin mappings
 - [ ] add support to auto generate mappings, ie: let g:inflector_mapping = 'gI'
 - [ ] add tests for mappings
-- [ ] scope functions to script while keeping tests running
+- [ ] scope functions to script while keeping tests running http://stackoverflow.com/questions/15595505/unit-testing-vim-script-local-functions-with-vimrunner
 - [ ] rename camelize to Pascalize and add camelize
 - [x] check how to enable autoloading of the plugin
 - [x] use autoloading to setup travis ci
@@ -106,6 +113,7 @@ TODO:
 - [ ] add vim help
 - [ ] write installation instructions
 - [ ] write usage
+- [ ] add repeat support
 
 Tests
 -----

@@ -16,8 +16,12 @@ function! Constantize(str)
     return join(map(Sanitize(a:str), 'toupper(v:val)'), '_')
 endfunction
 
-function! Camelize(str)
+function! Pascalize(str)
     return join(map(Sanitize(a:str), 'Capitalize(v:val)'), '')
+endfunction
+
+function! Camelize(str)
+    return substitute(Pascalize(a:str), '^\w', '\=tolower(submatch(0))', '')
 endfunction
 
 function! Capitalize(word)
@@ -67,6 +71,7 @@ function! s:Inflect(type, ...)
                 \ 'c': function('Camelize'),
                 \ 'd': function('Dotify'),
                 \ 'p': function('Privatize'),
+                \ 'P': function('Pascalize'),
                 \ 't': function('Titleize'),
                 \ }
 
