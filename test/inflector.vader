@@ -1,105 +1,80 @@
+Execute(Setup):
+    let available_inputs = [
+          \ 'some text to work',
+          \ 'Some Text To Work',
+          \ 'SomeTextToWork',
+          \ 'someTextToWork',
+          \ 'Some_Text_To_Work',
+          \ 'SOME_TEXT_TO_WORK',
+          \ 'some_text_to_work',
+          \ '_some_text_to_work',
+          \ 'some-text-to-work',
+          \ ]
+
 Execute(Tests for Sanitize):
-  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('some text to work')
-  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('Some Text To Work')
-  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('SomeTextToWork')
-  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('someTextToWork')
-  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('Some_Text_To_Work')
-  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('SOME_TEXT_TO_WORK')
-  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('some_text_to_work')
-  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('_some_text_to_work')
-  AssertEqual ['some', 'text', 'to', 'work'], Sanitize('some-text-to-work')
+
+    let sanitized_words = ['some', 'text', 'to', 'work']
+    for input in available_inputs
+        AssertEqual sanitized_words, Sanitize(input)
+    endfor
 
 Execute(Tests for Constantize):
-  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('some text to work')
-  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('some_text_to_work')
-  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('SomeTextToWork')
-  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('someTextToWork')
-  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('Some_Text_To_Work')
-  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('SOME_TEXT_TO_WORK')
-  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('some_text_to_work')
-  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('_some_text_to_work')
-  AssertEqual 'SOME_TEXT_TO_WORK', Constantize('some-text-to-work')
+
+    for input in available_inputs
+        AssertEqual 'SOME_TEXT_TO_WORK', Constantize(input)
+    endfor
 
 Execute(Tests for Privatize):
+
   AssertEqual '_some_var', Privatize('some_var')
   AssertEqual '_some_var', Privatize('_some_var')
 
 Execute(Tests for Capitalize):
+
   AssertEqual 'Big', Capitalize('big')
   AssertEqual 'Big', Capitalize('BIG')
 
 Execute(Tests for Titleize):
-  AssertEqual 'Some Text To Work', Titleize('some text to work')
-  AssertEqual 'Some Text To Work', Titleize('some_text_to_work')
-  AssertEqual 'Some Text To Work', Titleize('SomeTextToWork')
-  AssertEqual 'Some Text To Work', Titleize('someTextToWork')
-  AssertEqual 'Some Text To Work', Titleize('Some_Text_To_Work')
-  AssertEqual 'Some Text To Work', Titleize('SOME_TEXT_TO_WORK')
-  AssertEqual 'Some Text To Work', Titleize('some_text_to_work')
-  AssertEqual 'Some Text To Work', Titleize('_some_text_to_work')
-  AssertEqual 'Some Text To Work', Titleize('some-text-to-work')
+
+    for input in available_inputs
+        AssertEqual 'Some Text To Work', Titleize(input)
+    endfor
 
 Execute(Tests for Underscore):
-  AssertEqual 'some_text_to_work', Underscore('some text to work')
-  AssertEqual 'some_text_to_work', Underscore('some_text_to_work')
-  AssertEqual 'some_text_to_work', Underscore('SomeTextToWork')
-  AssertEqual 'some_text_to_work', Underscore('someTextToWork')
-  AssertEqual 'some_text_to_work', Underscore('Some_Text_To_Work')
-  AssertEqual 'some_text_to_work', Underscore('SOME_TEXT_TO_WORK')
-  AssertEqual 'some_text_to_work', Underscore('some_text_to_work')
-  AssertEqual 'some_text_to_work', Underscore('_some_text_to_work')
-  AssertEqual 'some_text_to_work', Underscore('some-text-to-work')
+
+    for input in available_inputs
+        AssertEqual 'some_text_to_work', Underscore(input)
+    endfor
 
 Execute(Tests for Pascalize):
-  AssertEqual 'SomeClassName', Pascalize('some class name')
-  AssertEqual 'SomeTextToWork', Pascalize('some_text_to_work')
-  AssertEqual 'SomeTextToWork', Pascalize('SomeTextToWork')
-  AssertEqual 'SomeTextToWork', Pascalize('someTextToWork')
-  AssertEqual 'SomeTextToWork', Pascalize('Some_Text_To_Work')
-  AssertEqual 'SomeTextToWork', Pascalize('SOME_TEXT_TO_WORK')
-  AssertEqual 'SomeTextToWork', Pascalize('some_text_to_work')
-  AssertEqual 'SomeTextToWork', Pascalize('_some_text_to_work')
-  AssertEqual 'SomeTextToWork', Pascalize('some-text-to-work')
+
+    for input in available_inputs
+        AssertEqual 'SomeTextToWork', Pascalize(input)
+    endfor
 
 Execute(Tests for Dasherize):
-  AssertEqual 'some-text-to-work', Dasherize('some text to work')
-  AssertEqual 'some-text-to-work', Dasherize('some_text_to_work')
-  AssertEqual 'some-text-to-work', Dasherize('SomeTextToWork')
-  AssertEqual 'some-text-to-work', Dasherize('someTextToWork')
-  AssertEqual 'some-text-to-work', Dasherize('Some_Text_To_Work')
-  AssertEqual 'some-text-to-work', Dasherize('SOME_TEXT_TO_WORK')
-  AssertEqual 'some-text-to-work', Dasherize('some_text_to_work')
-  AssertEqual 'some-text-to-work', Dasherize('_some_text_to_work')
+
+    for input in available_inputs
+        AssertEqual 'some-text-to-work', Dasherize(input)
+    endfor
 
 Execute(Tests for Dotify):
-  AssertEqual 'some.text.to.work', Dotify('some text to work')
-  AssertEqual 'some.text.to.work', Dotify('some_text_to_work')
-  AssertEqual 'some.text.to.work', Dotify('SomeTextToWork')
-  AssertEqual 'some.text.to.work', Dotify('someTextToWork')
-  AssertEqual 'some.text.to.work', Dotify('Some_Text_To_Work')
-  AssertEqual 'some.text.to.work', Dotify('SOME_TEXT_TO_WORK')
-  AssertEqual 'some.text.to.work', Dotify('some_text_to_work')
-  AssertEqual 'some.text.to.work', Dotify('_some_text_to_work')
+
+    for input in available_inputs
+        AssertEqual 'some.text.to.work', Dotify(input)
+    endfor
 
 Execute(Tests for Camelize):
-  AssertEqual 'someTextToWork', Camelize('some text to work')
-  AssertEqual 'someTextToWork', Camelize('some_text_to_work')
-  AssertEqual 'someTextToWork', Camelize('SomeTextToWork')
-  AssertEqual 'someTextToWork', Camelize('someTextToWork')
-  AssertEqual 'someTextToWork', Camelize('Some_Text_To_Work')
-  AssertEqual 'someTextToWork', Camelize('SOME_TEXT_TO_WORK')
-  AssertEqual 'someTextToWork', Camelize('some_text_to_work')
-  AssertEqual 'someTextToWork', Camelize('_some_text_to_work')
+
+    for input in available_inputs
+        AssertEqual 'someTextToWork', Camelize(input)
+    endfor
 
 Execute(Tests for Normalize):
-  AssertEqual 'some text to work', Normalize('some text to work')
-  AssertEqual 'some text to work', Normalize('some_text_to_work')
-  AssertEqual 'some text to work', Normalize('SomeTextToWork')
-  AssertEqual 'some text to work', Normalize('someTextToWork')
-  AssertEqual 'some text to work', Normalize('Some_Text_To_Work')
-  AssertEqual 'some text to work', Normalize('SOME_TEXT_TO_WORK')
-  AssertEqual 'some text to work', Normalize('some_text_to_work')
-  AssertEqual 'some text to work', Normalize('_some_text_to_work')
+
+    for input in available_inputs
+        AssertEqual 'some text to work', Normalize(input)
+    endfor
 
 Execute(Setup mappings):
     nmap gI <Plug>(Inflect)

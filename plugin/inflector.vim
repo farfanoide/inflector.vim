@@ -60,13 +60,8 @@ function! s:Inflect(type, ...)
     let l:saved_cursor = getpos('.')
 
     " get inflection type
-    echom 'Select Inflection (.,_,-,c,C,n,p,t):'
+    echom 'Select Inflection (. - _ C c n p P t):'
     let l:inflection = nr2char(getchar())
-
-    " return early on invalid inflection
-    if  l:inflection !~# '[._\-cCnpt]'
-        echom 'Invalid option' | return
-    endif
 
     let l:inflections = {
                 \ '.': function('Dotify'),
@@ -79,6 +74,11 @@ function! s:Inflect(type, ...)
                 \ 'P': function('Pascalize'),
                 \ 't': function('Titleize'),
                 \ }
+
+    " return early on invalid inflection
+    if ! has_key(l:inflections, l:inflection)
+        echom 'Invalid option' | return
+    endif
 
     if a:0  " Invoked from Visual mode, use gv command.
         silent exe "normal! gvy"
