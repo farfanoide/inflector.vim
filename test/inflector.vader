@@ -90,3 +90,25 @@ Execute(Tests for Camelize):
   AssertEqual 'someTextToWork', Camelize('SOME_TEXT_TO_WORK')
   AssertEqual 'someTextToWork', Camelize('some_text_to_work')
   AssertEqual 'someTextToWork', Camelize('_some_text_to_work')
+
+Execute(Setup mappings):
+    nmap gI <Plug>(Inflect)
+    vmap gI <Plug>(Inflect)
+
+Given(Some input):
+    some text to work
+
+Do(Capitalize in normal mode):
+    ^gI$C
+
+Expect(Capitalized text):
+    SOME_TEXT_TO_WORK
+
+Given(Some input):
+    some text to work
+
+Do(Capitalize in visual mode):
+    ^v$gIC
+
+Expect(Capitalized text):
+    SOME_TEXT_TO_WORK

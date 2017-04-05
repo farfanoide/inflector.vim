@@ -41,20 +41,19 @@ call dein#add('farfanoide/inflector.vim')
 Usage:
 ------
 
-Inflector does not ship with any mappings, to use it you have to add some to
-your vimrc, for example:
-
-```vim
-" Set them manually
-nmap gI <Plug>(Inflect)
-vmap gI <Plug>(Inflect)
-```
-
-Alternatively you can set `g:inflector_mapping` and both normal and visual
-mappings will be created automatically.
+Inflector does not ship with any mappings so in order to use it you have to add
+some to your vimrc. To have the plugin create them for you, just set
+`g:inflector_mapping`, for example:
 
 ```vim
 let g:inflector_mapping = 'gI'
+```
+
+Or if you want, set them manually:
+
+```vim
+nmap gI <Plug>(Inflect)
+vmap gI <Plug>(Inflect)
 ```
 
 Done, now you can `gI` some text (stands for `go Inflect`).
@@ -65,68 +64,68 @@ ask you for the type of conversion you want to apply.
 Available inflections:
 ----------------------
 
-- Dotify (invoked with `.`):
+Dotify (invoked with `.`):
 
-    ```vim
-    {cursor}some text to work
-    " gI$. results in:
-    some.text.to.work
-    ```
+```vim
+{cursor}some text to work
+" gI$. results in:
+some.text.to.work
+```
 
-- Dasherize (invoked with `-`):
+Dasherize (invoked with `-`):
 
-    ```vim
-    {cursor}some text to work
-    " gI$- results in:
-    some-text-to-work
-    ```
+```vim
+{cursor}some text to work
+" gI$- results in:
+some-text-to-work
+```
 
-- Constantize (invoked with `C`):
+Constantize (invoked with `C`):
 
-    ```vim
-    {cursor}some text to work
-    " gI$C results in:
-    SOME_TEXT_TO_WORK
-    ```
+```vim
+{cursor}some text to work
+" gI$C results in:
+SOME_TEXT_TO_WORK
+```
 
-- Camelize (invoked with `c`):
+Camelize (invoked with `c`):
 
-    ```vim
-    {cursor}some text to work
-    " gI$c results in:
-    someTextToWork
-    ```
-- Pascalize (invoked with `P`):
+```vim
+{cursor}some text to work
+" gI$c results in:
+someTextToWork
+```
+Pascalize (invoked with `P`):
 
-    ```vim
-    {cursor}some text to work
-    " gI$c results in:
-    SomeTextToWork
-    ```
+```vim
+{cursor}some text to work
+" gI$c results in:
+SomeTextToWork
+```
 
-- Titleize (invoked with `t`):
+Titleize (invoked with `t`):
 
-    ```vim
-    {cursor}some text to work
-    " gI$t results in:
-    Some Text To Work
-    ```
+```vim
+{cursor}some text to work
+" gI$t results in:
+Some Text To Work
+```
 
-- Underscore (invoked with `_`):
+Underscore (invoked with `_`):
 
-    ```vim
-    {cursor}some text to work
-    " gI$_ results in:
-    some_text_to_work
-    ```
+```vim
+{cursor}some text to work
+" gI$_ results in:
+some_text_to_work
+```
 
-- Privatize (invoked with `p`):
+Privatize (invoked with `p`):
 
-    ```vim
-    {cursor}some_var
-    " gI$p results in:
-    _some_var
-    ```
+```vim
+{cursor}some_var
+" gI$p results in:
+_some_var
+```
 
 TODO:
 -----
@@ -136,15 +135,14 @@ TODO:
 - [x] check how to run the functions with text objects/motions as input (:h map-operator)
 - [x] export plugin mappings
 - [x] add support to auto generate mappings, ie: let g:inflector_mapping = 'gI'
-- [ ] add tests for mappings
-- [ ] scope functions to script while keeping tests running http://stackoverflow.com/questions/15595505/unit-testing-vim-script-local-functions-with-vimrunner
-- [ ] rename camelize to Pascalize and add camelize
+- [x] add tests for mappings
+- [x] rename camelize to Pascalize and add camelize
 - [x] check how to enable autoloading of the plugin
 - [x] use autoloading to setup travis ci
+- [x] write usage
+- [ ] scope functions to script while keeping tests running http://stackoverflow.com/questions/15595505/unit-testing-vim-script-local-functions-with-vimrunner
 - [ ] explain the idea of 'text multiplexer'
 - [ ] add vim help
-- [ ] write installation instructions
-- [ ] write usage
 - [ ] add repeat support
 
 Tests
