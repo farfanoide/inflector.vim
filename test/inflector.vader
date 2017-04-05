@@ -50,16 +50,16 @@ Execute(Tests for Underscore):
   AssertEqual 'some_text_to_work', Underscore('_some_text_to_work')
   AssertEqual 'some_text_to_work', Underscore('some-text-to-work')
 
-Execute(Tests for Camelize):
-  AssertEqual 'SomeClassName', Camelize('some class name')
-  AssertEqual 'SomeTextToWork', Camelize('some_text_to_work')
-  AssertEqual 'SomeTextToWork', Camelize('SomeTextToWork')
-  AssertEqual 'SomeTextToWork', Camelize('someTextToWork')
-  AssertEqual 'SomeTextToWork', Camelize('Some_Text_To_Work')
-  AssertEqual 'SomeTextToWork', Camelize('SOME_TEXT_TO_WORK')
-  AssertEqual 'SomeTextToWork', Camelize('some_text_to_work')
-  AssertEqual 'SomeTextToWork', Camelize('_some_text_to_work')
-  AssertEqual 'SomeTextToWork', Camelize('some-text-to-work')
+Execute(Tests for Pascalize):
+  AssertEqual 'SomeClassName', Pascalize('some class name')
+  AssertEqual 'SomeTextToWork', Pascalize('some_text_to_work')
+  AssertEqual 'SomeTextToWork', Pascalize('SomeTextToWork')
+  AssertEqual 'SomeTextToWork', Pascalize('someTextToWork')
+  AssertEqual 'SomeTextToWork', Pascalize('Some_Text_To_Work')
+  AssertEqual 'SomeTextToWork', Pascalize('SOME_TEXT_TO_WORK')
+  AssertEqual 'SomeTextToWork', Pascalize('some_text_to_work')
+  AssertEqual 'SomeTextToWork', Pascalize('_some_text_to_work')
+  AssertEqual 'SomeTextToWork', Pascalize('some-text-to-work')
 
 Execute(Tests for Dasherize):
   AssertEqual 'some-text-to-work', Dasherize('some text to work')
@@ -80,3 +80,13 @@ Execute(Tests for Dotify):
   AssertEqual 'some.text.to.work', Dotify('SOME_TEXT_TO_WORK')
   AssertEqual 'some.text.to.work', Dotify('some_text_to_work')
   AssertEqual 'some.text.to.work', Dotify('_some_text_to_work')
+
+Execute(Tests for Camelize):
+  AssertEqual 'someTextToWork', Camelize('some text to work')
+  AssertEqual 'someTextToWork', Camelize('some_text_to_work')
+  AssertEqual 'someTextToWork', Camelize('SomeTextToWork')
+  AssertEqual 'someTextToWork', Camelize('someTextToWork')
+  AssertEqual 'someTextToWork', Camelize('Some_Text_To_Work')
+  AssertEqual 'someTextToWork', Camelize('SOME_TEXT_TO_WORK')
+  AssertEqual 'someTextToWork', Camelize('some_text_to_work')
+  AssertEqual 'someTextToWork', Camelize('_some_text_to_work')
