@@ -148,7 +148,7 @@ TODO:
 - [x] check how to enable autoloading of the plugin
 - [x] use autoloading to setup travis ci
 - [x] write usage
-- [ ] scope functions to script while keeping tests running http://stackoverflow.com/questions/15595505/unit-testing-vim-script-local-functions-with-vimrunner
+- [x] scope functions to script while keeping tests running
 - [ ] explain the idea of 'text multiplexer'
 - [ ] add vim help
 - [ ] add repeat support

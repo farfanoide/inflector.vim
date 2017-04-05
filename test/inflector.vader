@@ -1,4 +1,13 @@
 Execute(Setup):
+
+    let s:sid = matchlist(execute('scriptnames'), '\([0-9]\+\): [^ ]*plugin/inflector.vim')[1]
+
+    function! ExecutePrivateFunc(function_name, str)
+        let l:function_name = "<snr>" . s:sid . "_" . a:function_name
+        let l:PrivateFunction = function(l:function_name)
+        return PrivateFunction(a:str)
+    endfunction
+
     let available_inputs = [
           \ 'some text to work',
           \ 'Some Text To Work',
@@ -14,66 +23,67 @@ Execute(Setup):
 Execute(Tests for Sanitize):
 
     let sanitized_words = ['some', 'text', 'to', 'work']
+
     for input in available_inputs
-        AssertEqual sanitized_words, Sanitize(input)
+        AssertEqual sanitized_words, ExecutePrivateFunc('Sanitize', input)
     endfor
 
 Execute(Tests for Constantize):
 
     for input in available_inputs
-        AssertEqual 'SOME_TEXT_TO_WORK', Constantize(input)
+        AssertEqual 'SOME_TEXT_TO_WORK', ExecutePrivateFunc('Constantize', input)
     endfor
 
 Execute(Tests for Privatize):
 
-  AssertEqual '_some_var', Privatize('some_var')
-  AssertEqual '_some_var', Privatize('_some_var')
+  AssertEqual '_some_var', ExecutePrivateFunc('Privatize', 'some_var')
+  AssertEqual '_some_var', ExecutePrivateFunc('Privatize', '_some_var')
 
 Execute(Tests for Capitalize):
 
-  AssertEqual 'Big', Capitalize('big')
-  AssertEqual 'Big', Capitalize('BIG')
+  AssertEqual 'Big', ExecutePrivateFunc('Capitalize','big')
+  AssertEqual 'Big', ExecutePrivateFunc('Capitalize','BIG')
 
 Execute(Tests for Titleize):
 
     for input in available_inputs
-        AssertEqual 'Some Text To Work', Titleize(input)
+        AssertEqual 'Some Text To Work', ExecutePrivateFunc('Titleize', input)
     endfor
 
 Execute(Tests for Underscore):
 
     for input in available_inputs
-        AssertEqual 'some_text_to_work', Underscore(input)
+        AssertEqual 'some_text_to_work', ExecutePrivateFunc('Underscore', input)
     endfor
 
 Execute(Tests for Pascalize):
 
     for input in available_inputs
-        AssertEqual 'SomeTextToWork', Pascalize(input)
+        AssertEqual 'SomeTextToWork', ExecutePrivateFunc('Pascalize', input)
     endfor
 
 Execute(Tests for Dasherize):
 
     for input in available_inputs
-        AssertEqual 'some-text-to-work', Dasherize(input)
+        AssertEqual 'some-text-to-work', ExecutePrivateFunc('Dasherize', input)
     endfor
 
 Execute(Tests for Dotify):
 
     for input in available_inputs
-        AssertEqual 'some.text.to.work', Dotify(input)
+        AssertEqual 'some.text.to.work', ExecutePrivateFunc('Dotify', input)
     endfor
 
 Execute(Tests for Camelize):
 
     for input in available_inputs
-        AssertEqual 'someTextToWork', Camelize(input)
+        AssertEqual 'someTextToWork', ExecutePrivateFunc('Camelize', input)
     endfor
 
 Execute(Tests for Normalize):
 
     for input in available_inputs
-        AssertEqual 'some text to work', Normalize(input)
+        AssertEqual 'some text to work', ExecutePrivateFunc('Normalize', input)
     endfor
 
 Execute(Setup mappings):

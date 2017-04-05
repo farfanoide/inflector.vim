@@ -4,7 +4,7 @@ endif
 
 let g:loaded_inflector = 1
 
-function! Sanitize(str)
+function! s:Sanitize(str)
     if a:str =~ '\s\|[._\-]'
         let l:separator = '\s\|[._\-]'
     else
@@ -13,44 +13,44 @@ function! Sanitize(str)
     return map(split(a:str, l:separator), 'tolower(v:val)')
 endfunction
 
-function! Normalize(str)
-    return join(Sanitize(a:str))
+function! s:Normalize(str)
+    return join(s:Sanitize(a:str))
 endfunction
 
-function! Constantize(str)
-    return join(map(Sanitize(a:str), 'toupper(v:val)'), '_')
+function! s:Constantize(str)
+    return join(map(s:Sanitize(a:str), 'toupper(v:val)'), '_')
 endfunction
 
-function! Pascalize(str)
-    return join(map(Sanitize(a:str), 'Capitalize(v:val)'), '')
+function! s:Pascalize(str)
+    return join(map(s:Sanitize(a:str), 's:Capitalize(v:val)'), '')
 endfunction
 
-function! Camelize(str)
-    return substitute(Pascalize(a:str), '^\w', '\=tolower(submatch(0))', '')
+function! s:Camelize(str)
+    return substitute(s:Pascalize(a:str), '^\w', '\=tolower(submatch(0))', '')
 endfunction
 
-function! Capitalize(word)
+function! s:Capitalize(word)
     return substitute(tolower(a:word), '\w', '\=toupper(submatch(0))', '')
 endfunction
 
-function! Titleize(str)
-    return join(map(Sanitize(a:str), 'Capitalize(v:val)'))
+function! s:Titleize(str)
+    return join(map(s:Sanitize(a:str), 's:Capitalize(v:val)'))
 endfunction
 
-function! Privatize(str)
+function! s:Privatize(str)
     return a:str =~ '^_' ? a:str : '_' . a:str
 endfunction
 
-function! Underscore(str)
-    return join(Sanitize(a:str), '_')
+function! s:Underscore(str)
+    return join(s:Sanitize(a:str), '_')
 endfunction
 
-function! Dasherize(str)
-    return join(Sanitize(a:str), '-')
+function! s:Dasherize(str)
+    return join(s:Sanitize(a:str), '-')
 endfunction
 
-function! Dotify(str)
-    return join(Sanitize(a:str), '.')
+function! s:Dotify(str)
+    return join(s:Sanitize(a:str), '.')
 endfunction
 
 function! s:Inflect(type, ...)
@@ -64,15 +64,15 @@ function! s:Inflect(type, ...)
     let l:inflection = nr2char(getchar())
 
     let l:inflections = {
-                \ '.': function('Dotify'),
-                \ '-': function('Dasherize'),
-                \ '_': function('Underscore'),
-                \ 'C': function('Constantize'),
-                \ 'c': function('Camelize'),
-                \ 'n': function('Normalize'),
-                \ 'p': function('Privatize'),
-                \ 'P': function('Pascalize'),
-                \ 't': function('Titleize'),
+                \ '.': function('s:Dotify'),
+                \ '-': function('s:Dasherize'),
+                \ '_': function('s:Underscore'),
+                \ 'C': function('s:Constantize'),
+                \ 'c': function('s:Camelize'),
+                \ 'n': function('s:Normalize'),
+                \ 'p': function('s:Privatize'),
+                \ 'P': function('s:Pascalize'),
+                \ 't': function('s:Titleize'),
                 \ }
 
     " return early on invalid inflection
