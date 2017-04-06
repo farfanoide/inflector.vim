@@ -59,10 +59,6 @@ function! s:Inflect(type, ...)
     let l:saved_register = @@
     let l:saved_cursor = getpos('.')
 
-    " get inflection type
-    echom 'Select Inflection (. - _ C c n p P t):'
-    let l:inflection = nr2char(getchar())
-
     let l:inflections = {
                 \ '.': function('s:Dotify'),
                 \ '-': function('s:Dasherize'),
@@ -74,6 +70,10 @@ function! s:Inflect(type, ...)
                 \ 'P': function('s:Pascalize'),
                 \ 't': function('s:Titleize'),
                 \ }
+
+    " get inflection type
+    echom 'Select Inflection (' . join(keys(l:inflections)) . '):'
+    let l:inflection = nr2char(getchar())
 
     " return early on invalid inflection
     if ! has_key(l:inflections, l:inflection)
@@ -96,7 +96,6 @@ function! s:Inflect(type, ...)
 
     " replace old text with result
     normal! `[v`]p
-    normal! `[
 
     " restore previous state
     let @@ = l:saved_register

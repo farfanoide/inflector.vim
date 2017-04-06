@@ -10,9 +10,11 @@ The idea is to have a set of functions that present similar functionality as
 [ActiveSupport::Inflector][inflector] and make it easier to go from something
 like 'some_var' to 'SOME_VAR' or 'SomeVar' to 'some_var', etc.
 
+
 Why?
 ----
-Because it seems simple enough for a first approach into vimscript and because
+
+Because it seemed simple enough for a first approach into vimscript and because
 available options require either python or ruby.
 
 Installation:
@@ -57,83 +59,25 @@ vmap gI <Plug>(Inflect)
 ```
 
 Done, now you can `gI` some text (stands for `go Inflect`).
-with those mappings you can call the Inflect function in normal mode passing it
-a text object or a motion, ie: `gIiW`, or `gI/searchsomething`. Inflector will
+With those mappings you can call the Inflect function in normal mode passing it
+a text object or a motion, IE: `gIiW`, or `gI/searchsomething`. Inflector will
 ask you for the type of conversion you want to apply.
 
 Available inflections:
 ----------------------
 
-Dotify (invoked with `.`):
+| Inflection  |  Alias  |          Input           |  Command   |          Output          |
+| ----------- | ------- | ------------------------ | ---------- | ------------------------ |
+|   Dotify    |   `.`   |      someTextToWork      |  `gIiw.`   |    some.text.to.work     |
+|  Dasherize  |   `-`   |    some_text_to_work     |  `gIiw-`   |    some-text-to-work     |
+| Underscore  |   `_`   |    some text to work     |   `gI$_`   |    some_text_to_work     |
+|  Camelize   |   `c`   |    Some Text To Work     |   `gI$c`   |      someTextToWork      |
+| Constantize |   `C`   |    some text to work     |   `gI$C`   |    SOME_TEXT_TO_WORK     |
+|  Pascalize  |   `P`   |    some.text.to.work     |  `gIiWP`   |      SomeTextToWork      |
+|  Titleize   |   `t`   |    some text to work     |   `gI$t`   |    Some Text To Work     |
+|  Privatize  |   `p`   |         some_var         |   `gI$p`   |        _some_var         |
+|  Normalize  |   `n`   |    SOME_TEXT_TO_WORK     |   `gI$n`   |    some text to work     |
 
-```vim
-{cursor}some text to work
-" gI$. results in:
-some.text.to.work
-```
-
-Dasherize (invoked with `-`):
-
-```vim
-{cursor}some text to work
-" gI$- results in:
-some-text-to-work
-```
-
-Constantize (invoked with `C`):
-
-```vim
-{cursor}some text to work
-" gI$C results in:
-SOME_TEXT_TO_WORK
-```
-
-Camelize (invoked with `c`):
-
-```vim
-{cursor}some text to work
-" gI$c results in:
-someTextToWork
-```
-Pascalize (invoked with `P`):
-
-```vim
-{cursor}some text to work
-" gI$c results in:
-SomeTextToWork
-```
-
-Titleize (invoked with `t`):
-
-```vim
-{cursor}some text to work
-" gI$t results in:
-Some Text To Work
-```
-
-Underscore (invoked with `_`):
-
-```vim
-{cursor}some text to work
-" gI$_ results in:
-some_text_to_work
-```
-
-Privatize (invoked with `p`):
-
-```vim
-{cursor}some_var
-" gI$p results in:
-_some_var
-```
-
-Normalize (invoked with `n`):
-
-```vim
-{cursor}SOME_TEXT_TO_WORK
-" gI$n results in:
-some text to work
-```
 
 TODO:
 -----
@@ -149,7 +93,6 @@ TODO:
 - [x] use autoloading to setup travis ci
 - [x] write usage
 - [x] scope functions to script while keeping tests running
-- [ ] explain the idea of 'text multiplexer'
 - [ ] add vim help
 - [ ] add repeat support
 
