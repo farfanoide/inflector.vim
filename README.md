@@ -66,6 +66,14 @@ ask you for the type of conversion you want to apply.
 Available inflections:
 ----------------------
 
+The idea behind the plugin is to have a sort of `"Text Multiplexer"` which can
+translate from any of the recognized patterns to any other, meaning: it should
+be the able to go from `PascalCase` to `CONSTANT` or `camelCase` and viceversa.
+
+This is done by having a common representation which currently is based on a
+list so `SomeText` translates into `['some', 'text']` and from there it's
+trivial to convert to any other representation.
+
 | Inflection  |  Alias  |          Input           |  Command   |          Output          |
 | ----------- | ------- | ------------------------ | ---------- | ------------------------ |
 |   Dotify    |   `.`   |      someTextToWork      |  `gIiw.`   |    some.text.to.work     |
@@ -75,26 +83,11 @@ Available inflections:
 | Constantize |   `C`   |    some text to work     |   `gI$C`   |    SOME_TEXT_TO_WORK     |
 |  Pascalize  |   `P`   |    some.text.to.work     |  `gIiWP`   |      SomeTextToWork      |
 |  Titleize   |   `t`   |    some text to work     |   `gI$t`   |    Some Text To Work     |
-|  Privatize  |   `p`   |         some_var         |   `gI$p`   |        _some_var         |
 |  Normalize  |   `n`   |    SOME_TEXT_TO_WORK     |   `gI$n`   |    some text to work     |
+|  Privatize  |   `p`   |         some_var         |   `gI$p`   |        `_some_var`         |
 
-
-TODO:
------
-
-- [x] Create functions for common inflections
-- [x] Create text multiplexer (one way is done via `Sanitize`)
-- [x] check how to run the functions with text objects/motions as input (:h map-operator)
-- [x] export plugin mappings
-- [x] add support to auto generate mappings, ie: let g:inflector_mapping = 'gI'
-- [x] add tests for mappings
-- [x] rename camelize to Pascalize and add camelize
-- [x] check how to enable autoloading of the plugin
-- [x] use autoloading to setup travis ci
-- [x] write usage
-- [x] scope functions to script while keeping tests running
-- [ ] add vim help
-- [ ] add repeat support
+> The only transformation that is handeled differently is `Privatize` which
+> basically only checks if already starts with a `_`.
 
 Tests
 -----
@@ -102,8 +95,31 @@ Tests
 So far, tests are ran via [Vader][vader], open
 [inflector.vader](./test/inflector.vader) and run `:Vader`
 
+License:
+--------
+
+See the [LICENSE](LICENSE).
+
+Contributing:
+--------------
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
+
+TODO:
+-----
+
+- [ ] add repeat support
+- [ ] add vim help?
+
+
+<!-- links -->
 [inflector]: http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html
 [vader]: https://github.com/junegunn/vader.vim
 [vim-plug]: https://github.com/junegunn/vim-plug
 [vundle]: https://github.com/VundleVim/Vundle.vim
 [dein]: https://github.com/Shougo/dein.vim
+<!-- end links -->
