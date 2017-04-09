@@ -57,7 +57,7 @@ function! s:Inflect(type, ...)
     " save state
     let l:saved_selection = &selection
     let l:saved_register = @@
-    let l:saved_cursor = getpos('.')
+    let l:winview = winsaveview()
 
     let l:inflections = {
                 \ '.': function('s:Dotify'),
@@ -99,7 +99,7 @@ function! s:Inflect(type, ...)
 
     " restore previous state
     let @@ = l:saved_register
-    call setpos('.', l:saved_cursor)
+    call winrestview(l:winview)
 
     " clear command line
     echom ''
