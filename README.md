@@ -10,6 +10,7 @@ The idea is to have a set of functions that present similar functionality as
 [ActiveSupport::Inflector][inflector] and make it easier to go from something
 like 'some_var' to 'SOME_VAR' or 'SomeVar' to 'some_var', etc.
 
+![inflector.vim in action](https://www.dropbox.com/s/qkg7go15e1oeypl/inflector.vim.gif?dl=1 "inflector.vim plugin")
 
 Why?
 ----
@@ -87,7 +88,8 @@ trivial to convert to any other representation.
 |  Privatize  |   `p`   |         some_var         |   `gI$p`   |        `_some_var`         |
 
 > The only transformation that is handeled differently is `Privatize` which
-> basically only checks if already starts with a `_`.
+> basically only checks if the text being tranfsformed already starts with a
+> `_`.
 
 Tests
 -----
