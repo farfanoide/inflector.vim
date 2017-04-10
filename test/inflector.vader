@@ -16,6 +16,7 @@ Execute(Setup):
           \ 'Some_Text_To_Work',
           \ 'SOME_TEXT_TO_WORK',
           \ 'some_text_to_work',
+          \ 'some/text/to/work',
           \ '_some_text_to_work',
           \ 'some-text-to-work',
           \ ]
@@ -84,6 +85,12 @@ Execute(Tests for Normalize):
 
     for input in g:available_inputs
         AssertEqual 'some text to work', ExecutePrivateFunc('Normalize', input)
+    endfor
+
+Execute(Tests for Slashify):
+
+    for input in g:available_inputs
+        AssertEqual 'some/text/to/work', ExecutePrivateFunc('Slashify', input)
     endfor
 
 Execute(Setup mappings):

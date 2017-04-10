@@ -5,8 +5,8 @@ endif
 let g:loaded_inflector = 1
 
 function! s:Sanitize(str)
-    if a:str =~ '\s\|[._\-]'
-        let l:separator = '\s\|[._\-]'
+    if a:str =~ '\s\|[._\-/]'
+        let l:separator = '\s\|[._\-/]'
     else
         let l:separator = '[A-Z]\?[a-z]*\zs'
     endif
@@ -53,6 +53,11 @@ function! s:Dotify(str)
     return join(s:Sanitize(a:str), '.')
 endfunction
 
+function! s:Slashify(str)
+    return join(s:Sanitize(a:str), '/')
+endfunction
+
+
 function! s:Inflect(type, ...)
     " save state
     let l:saved_selection = &selection
@@ -68,6 +73,7 @@ function! s:Inflect(type, ...)
                 \ 'n': function('s:Normalize'),
                 \ 'p': function('s:Privatize'),
                 \ 'P': function('s:Pascalize'),
+                \ 's': function('s:Slashify'),
                 \ 't': function('s:Titleize'),
                 \ }
 
