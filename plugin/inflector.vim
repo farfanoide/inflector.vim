@@ -65,16 +65,16 @@ function! s:Inflect(type, ...)
     let l:winview = winsaveview()
 
     let l:inflections = {
-                \ '.': function('s:Dotify'),
-                \ '-': function('s:Dasherize'),
-                \ '_': function('s:Underscore'),
-                \ '/': function('s:Slashify'),
-                \ 'C': function('s:Constantize'),
-                \ 'c': function('s:Camelize'),
-                \ 'n': function('s:Normalize'),
-                \ 'p': function('s:Privatize'),
-                \ 'P': function('s:Pascalize'),
-                \ 't': function('s:Titleize'),
+                \ '.': 's:Dotify',
+                \ '-': 's:Dasherize',
+                \ '_': 's:Underscore',
+                \ '/': 's:Slashify',
+                \ 'C': 's:Constantize',
+                \ 'c': 's:Camelize',
+                \ 'n': 's:Normalize',
+                \ 'p': 's:Privatize',
+                \ 'P': 's:Pascalize',
+                \ 't': 's:Titleize',
                 \ }
 
     " get inflection type
@@ -95,7 +95,8 @@ function! s:Inflect(type, ...)
     endif
 
     " call inflector
-    let l:result = l:inflections[l:inflection](@@)
+    let l:InflectionFunction = function(l:inflections[l:inflection])
+    let l:result = l:InflectionFunction(@@)
 
     " set result in clipboard
     call setreg('@', l:result, getregtype('@'))
