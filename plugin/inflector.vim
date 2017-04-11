@@ -68,12 +68,12 @@ function! s:Inflect(type, ...)
                 \ '.': function('s:Dotify'),
                 \ '-': function('s:Dasherize'),
                 \ '_': function('s:Underscore'),
+                \ '/': function('s:Slashify'),
                 \ 'C': function('s:Constantize'),
                 \ 'c': function('s:Camelize'),
                 \ 'n': function('s:Normalize'),
                 \ 'p': function('s:Privatize'),
                 \ 'P': function('s:Pascalize'),
-                \ 's': function('s:Slashify'),
                 \ 't': function('s:Titleize'),
                 \ }
 

@@ -85,7 +85,7 @@ trivial to convert to any other representation.
 |  Pascalize  |   `P`   |    some.text.to.work     |  `gIiWP`   |      SomeTextToWork      |
 |  Titleize   |   `t`   |    some text to work     |   `gI$t`   |    Some Text To Work     |
 |  Normalize  |   `n`   |    SOME_TEXT_TO_WORK     |   `gI$n`   |    some text to work     |
-|  Slashify   |   `s`   |    SOME_TEXT_TO_WORK     |   `gI$s`   |    some/text/to/work     |
+|  Slashify   |   `/`   |    SOME_TEXT_TO_WORK     |   `gIiw/`  |    some/text/to/work     |
 |  Privatize  |   `p`   |         some_var         |   `gI$p`   |        `_some_var`       |
 
 > The only transformation that is handeled differently is `Privatize` which
