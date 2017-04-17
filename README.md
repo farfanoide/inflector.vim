@@ -80,6 +80,7 @@ trivial to convert to any other representation.
 |   Dotify    |   `.`   |      someTextToWork      |  `gIiw.`   |    some.text.to.work     |
 |  Dasherize  |   `-`   |    some_text_to_work     |  `gIiw-`   |    some-text-to-work     |
 | Underscore  |   `_`   |    some text to work     |   `gI$_`   |    some_text_to_work     |
+| FreeBallIt  |   `f`   |    some text to work     |  `gI$f&`   |    some&text&to&work     |
 |  Camelize   |   `c`   |    Some Text To Work     |   `gI$c`   |      someTextToWork      |
 | Constantize |   `C`   |    some text to work     |   `gI$C`   |    SOME_TEXT_TO_WORK     |
 |  Pascalize  |   `P`   |    some.text.to.work     |  `gIiWP`   |      SomeTextToWork      |

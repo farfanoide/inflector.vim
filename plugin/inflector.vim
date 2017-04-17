@@ -57,6 +57,12 @@ function! s:Slashify(str)
     return join(s:Sanitize(a:str), '/')
 endfunction
 
+function! s:FreeBallIt(str)
+    echom 'Choose the character to use:'
+    let l:separator = nr2char(getchar())
+
+    return join(s:Sanitize(a:str), l:separator)
+endfunction
 
 function! s:Inflect(type, ...)
     " save state
@@ -75,6 +81,7 @@ function! s:Inflect(type, ...)
                 \ 'p': 's:Privatize',
                 \ 'P': 's:Pascalize',
                 \ 't': 's:Titleize',
+                \ 'f': 's:FreeBallIt',
                 \ }
 
     " get inflection type

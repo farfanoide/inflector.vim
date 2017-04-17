@@ -114,3 +114,12 @@ Do(Capitalize in visual mode):
 
 Expect(Capitalized text):
     SOME_TEXT_TO_WORK
+
+Given(Some input):
+    some text to work
+
+Do(Freeballize text):
+    ^gI$f&
+
+Expect(Freeballized text):
+    some&text&to&work
