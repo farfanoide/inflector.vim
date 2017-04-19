@@ -80,18 +80,23 @@ trivial to convert to any other representation.
 |   Dotify    |   `.`   |      someTextToWork      |  `gIiw.`   |    some.text.to.work     |
 |  Dasherize  |   `-`   |    some_text_to_work     |  `gIiw-`   |    some-text-to-work     |
 | Underscore  |   `_`   |    some text to work     |   `gI$_`   |    some_text_to_work     |
-| FreeBallIt  |   `f`   |    some text to work     |  `gI$f&`   |    some&text&to&work     |
 |  Camelize   |   `c`   |    Some Text To Work     |   `gI$c`   |      someTextToWork      |
 | Constantize |   `C`   |    some text to work     |   `gI$C`   |    SOME_TEXT_TO_WORK     |
 |  Pascalize  |   `P`   |    some.text.to.work     |  `gIiWP`   |      SomeTextToWork      |
 |  Titleize   |   `t`   |    some text to work     |   `gI$t`   |    Some Text To Work     |
 |  Normalize  |   `n`   |    SOME_TEXT_TO_WORK     |   `gI$n`   |    some text to work     |
 |  Slashify   |   `/`   |    SOME_TEXT_TO_WORK     |   `gIiw/`  |    some/text/to/work     |
+| FreeBallIt  |   `f`   |    some text to work     |  `gI$f&`   |    some&text&to&work     |
 |  Privatize  |   `p`   |         some_var         |   `gI$p`   |        `_some_var`       |
 
-> The only transformation that is handeled differently is `Privatize` which
-> basically only checks if the text being tranfsformed already starts with a
-> `_`.
+Special Inflections:
+--------------------
+
+`Privatize` is handeled differently, it only check if the text being transformed
+already starts with an underscore.
+
+`FreeBallIt` allows the user to specify any character to join the separated
+words.
 
 Tests
 -----
