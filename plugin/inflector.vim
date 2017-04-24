@@ -42,19 +42,23 @@ function! s:Privatize(str)
 endfunction
 
 function! s:Underscore(str)
-    return join(s:Sanitize(a:str), '_')
+    return s:SplitJoin(a:str, '_')
 endfunction
 
 function! s:Dasherize(str)
-    return join(s:Sanitize(a:str), '-')
+    return s:SplitJoin(a:str, '-')
 endfunction
 
 function! s:Dotify(str)
-    return join(s:Sanitize(a:str), '.')
+    return s:SplitJoin(a:str, '.')
 endfunction
 
 function! s:Slashify(str)
-    return join(s:Sanitize(a:str), '/')
+    return s:SplitJoin(a:str, '/')
+endfunction
+
+function! s:SplitJoin(str, separator)
+    return join(s:Sanitize(a:str), a:separator)
 endfunction
 
 function! s:FreeBallIt(str)
