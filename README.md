@@ -10,7 +10,8 @@ The idea is to have a set of functions that present similar functionality as
 [ActiveSupport::Inflector][inflector] and make it easier to go from something
 like 'some_var' to 'SOME_VAR' or 'SomeVar' to 'some_var', etc.
 
-![inflector.vim in action](https://www.dropbox.com/s/qkg7go15e1oeypl/inflector.vim.gif?dl=1 "inflector.vim plugin")
+![inflector.vim in
+action](https://raw.github.com/farfanoide/img/master/inflector.vim/inflector.vim.gif)
 
 Why?
 ----
