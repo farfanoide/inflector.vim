@@ -109,11 +109,8 @@ function! s:Inflect(type, ...)
     let l:InflectionFunction = function(l:inflections[l:inflection])
     let l:result = l:InflectionFunction(@@)
 
-    " set result in clipboard
-    call setreg('@', l:result, getregtype('@'))
-
     " replace old text with result
-    normal! `[v`]p
+		execute "normal! `[v`]c" . l:result
 
     " restore previous state
     let @@ = l:saved_register
